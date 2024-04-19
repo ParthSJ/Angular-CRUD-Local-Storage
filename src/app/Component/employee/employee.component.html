@@ -1,0 +1,76 @@
+<div class="card" id="card">
+    <div class="card header text-white" id="head">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="mc" class="col-md-1 p-3"><strong id="mc"> Employee Detail</strong></div>
+                <div class="col-md-6 p-3" > <button type="button" class="btn btn-outline-light" (click)="onAddStudent()"> Add Employee</button></div>
+            </div>
+        </div>
+    </div>
+<div class="card-body" id="table">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" [(ngModel)]="isSelectAll" (ngModelChange)="onCheckAll()"></th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of studentArr">
+                        <td>
+                            <input type="checkbox" [(ngModel)]="item.isChecked">
+                        </td>
+                        <td>{{item.fullName}}</td>
+                        <td>{{item.email}}</td>
+                        <td class="text-centre">
+                            <button type="button" class="btn btn-sm" (click)="onEdit(item)"><i class="bi bi-pencil"></i></button>
+                            <button type="button" class="btn btn-sm" (click)="onDelete(item.studentId)"><i class="bi bi-x-square-fill"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="studentArr.length > 0">
+    <button type="button" class="btn btn-sm" (click)="deleteAll()"><i class="bi bi-trash3">All</i></button></div>
+</div>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal" id="studentModel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header-->
+        <div class="modal-header bg-sucess text-white" id="head">
+          <h6 class="modal-title" id="exampleModalLabel">Add Employee</h6>
+          <button type="button" class="btn-close btn-close-white" (click)="onCloseModel()"></button>
+        </div>
+        <form #userForm="ngForm">
+            <!-- Modal body-->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8">
+                <label class="for-label">Name</label>
+                <input type="text" name="name" class="form-control" [(ngModel)]="student.fullName" placeholder="Full Name" />
+            </div>
+            <div class="col-md-8">
+                <label class="for-label">Email</label>
+                <input type="text" name="email" class="form-control" [(ngModel)]="student.email" placeholder="Email" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                 <div class="col-md-6 text-centre">
+                     <button type="button" class="btn btn-dark btn-sm" (click)="saveStudent(userForm)" *ngIf="student.studentId ==0">Save</button>
+                     <button type="button" class="btn btn-dark btn-sm" (click)="onUpdate()" *ngIf="student.studentId !==0">Update</button>
+                 </div>
+         </div>         
+        </div></form>
+      </div>
+    </div>
+  </div>

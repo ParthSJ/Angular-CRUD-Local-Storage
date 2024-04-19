@@ -1,0 +1,15 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+#mc{
+    min-width:fit-content;
+}
+#table{
+    min-width: fit-content;
+}
+#card{
+    height: auto;
+    margin: auto;
+    max-width: 50%;
+}
+#head{
+    background: #000;
+}
